@@ -28,7 +28,7 @@ def app():
     french_texts=[]
     english_character=[]
     french_character=[]
-    with open("./fra.txt", "r", encoding="utf-8") as f:
+    with open("fra.txt", "r", encoding="utf-8") as f:
         lines = f.read().split("\n")
     for line in lines[:30000]:
         english_text,french_text,_=line.split("\t")
@@ -66,7 +66,7 @@ def app():
         if len(i)>max_decoder_seq_length:
             max_decoder_seq_length=len(i)
             
-    model = load_model("./TransFrench.h5")        
+    model = load_model("TransFrench.h5")        
             
     latent_dim = 256         
     
