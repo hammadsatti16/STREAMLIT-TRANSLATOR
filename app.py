@@ -5,7 +5,7 @@ from PIL import  Image
 
 # Custom imports 
 from multipage import MultiPage
-from pages import translator, About, Record
+import translator, About, Record
 
 # Create an instance of the app 
 app = MultiPage()
