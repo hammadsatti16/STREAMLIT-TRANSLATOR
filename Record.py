@@ -21,41 +21,33 @@ import os
 def app():
     st.header("Press Record to record your voice")
     if st.button('Record'):
-        CHUNK = 1024 
+        filename = "voice.wav"
+        chunk = 1024
         FORMAT = pyaudio.paInt16
-        CHANNELS = 2
-        RATE = 44100
-        RECORD_SECONDS = 5
-        WAVE_OUTPUT_FILENAME = "voice.wav"
-        time.sleep(2)
+        channels = 1
+        sample_rate = 44100
+        record_seconds = duration
         p = pyaudio.PyAudio()
         stream = p.open(format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
-                input=True,
-                frames_per_buffer=1024)
-
-        st.subheader("Please speak as recording is in progress")
-
+        channels=channels,
+        rate=sample_rate,
+        input=True,
+        output=True,
+        frames_per_buffer=chunk)
         frames = []
-
-        for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-            data = stream.read(CHUNK)
+        for i in range(int(44100 / chunk * record_seconds)):
+            data = stream.read(chunk)
             frames.append(data)
-
-        st.subheader("Done recording")
-
         stream.stop_stream()
         stream.close()
         p.terminate()
-
-        wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-        wf.setnchannels(CHANNELS)
+        wf = wave.open(filename, "wb")
+        wf.setnchannels(channels)
         wf.setsampwidth(p.get_sample_size(FORMAT))
-        wf.setframerate(RATE)
-        wf.writeframes(b''.join(frames))
-        wf.close()
-    
+        wf.setframerate(sample_rate)
+        wf.writeframes(b"".join(frames))
+        wf.close() 
+        audio="voice.wav"    
     st.header("Press Play to hear what you just recorded")
     
     
