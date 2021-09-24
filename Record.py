@@ -52,7 +52,7 @@ def app():
         if "GET_TEXT" in result:
             st.write("Done with the recording")   
     
-    st.header("Press Translate to get translation")
+    st.subheader("Press Translate to get translation")
     if st.button("Translate"):
         texts=result.get("GET_TEXT")
         string=str(texts)
