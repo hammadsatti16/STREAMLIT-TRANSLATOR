@@ -4,8 +4,8 @@ requires.io
 pandas
 tensorflow==2.0
 keras==2.0
-streamlit
 gcc
+streamlit
 python3-dev
 SpeechRecognition
 libevent-dev
