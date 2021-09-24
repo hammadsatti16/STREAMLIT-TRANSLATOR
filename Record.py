@@ -53,7 +53,10 @@ def app():
     
     
     if st.button("Translate"):
-        text=result.get("GET_TEXT")
+        texts=result.get("GET_TEXT")
+        string=str(texts)
+        results = string[0].upper() + string[1:]
+        text=results
         st.write("You just said:   ",text)
         english_texts=[]
         french_texts=[]
