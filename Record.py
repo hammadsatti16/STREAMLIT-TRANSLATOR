@@ -26,7 +26,7 @@ def app():
         FORMAT = pyaudio.paInt16
         channels = 1
         sample_rate = 44100
-        record_seconds = duration
+        record_seconds = 5
         p = pyaudio.PyAudio()
         stream = p.open(format=FORMAT,
         channels=channels,
