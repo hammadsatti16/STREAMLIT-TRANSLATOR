@@ -57,8 +57,8 @@ def app():
     
     
     if st.button("Translate"):
-        texts=result.get("GET_TEXT")
-        st.write("You just said:   ",texts)
+        text=result.get("GET_TEXT")
+        st.write("You just said:   ",text)
         english_texts=[]
         french_texts=[]
         english_character=[]
@@ -154,7 +154,7 @@ def app():
         reverse_target_char_index ={}
         for i in range(len(french_character)):
             reverse_target_char_index[i]=french_character[i] 
-        k=len(texts)
+        k=len(text)
         m=0
         a=[]
         b=[]
