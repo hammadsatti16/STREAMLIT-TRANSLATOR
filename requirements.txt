@@ -1,11 +1,10 @@
 h5py
 Keras
-numpy==1.19.5
-numpydoc==0.8.0
-opencv-python==4.5.3.56
-pandas==1.1.5
-PyAudio==0.2.11
-streamlit==0.88.0
+numpy
+opencv-python
+pandas
+PyAudio
+streamlit
 tensorflow
 SpeechRecognition
 gTTS
