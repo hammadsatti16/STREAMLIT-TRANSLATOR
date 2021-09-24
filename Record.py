@@ -48,10 +48,9 @@ def app():
     refresh_on_update=False,
     override_height=75,
     debounce_time=0)
-    st.write("Done with the recording")
-    st.header("Press Translate to get French Translation")
-    
-    
+    if result:
+        if "GET_TEXT" in result:
+            st.write("Done with the recording")    
     if st.button("Translate"):
         texts=result.get("GET_TEXT")
         string=str(texts)
