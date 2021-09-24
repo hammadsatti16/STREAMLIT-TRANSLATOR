@@ -33,7 +33,7 @@ def app():
                 channels=CHANNELS,
                 rate=RATE,
                 input=True,
-                frames_per_buffer=CHUNK)
+                frames_per_buffer=1024)
 
         st.subheader("Please speak as recording is in progress")
 
