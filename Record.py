@@ -22,7 +22,7 @@ from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 def app():
     st.header("Press Record to record your voice")
-    stt_button = Button(label="Speak", width=100)
+    stt_button = Button(label="Speak")
     stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
