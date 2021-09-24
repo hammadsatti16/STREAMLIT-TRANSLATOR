@@ -134,7 +134,7 @@ def app():
             if len(i)>max_decoder_seq_length:
                 max_decoder_seq_length=len(i)
         latent_dim = 256  
-        model = load_model("./TransFrench.h5")        
+        model = load_model("FrencTrans.h5")        
         encoder_inputs = model.input[0]  # input_1
         encoder_outputs_1, state_h_enc_1, state_c_enc_1 = model.layers[2].output 
         encoder_outputs, state_h_enc, state_c_enc = model.layers[4].output 
