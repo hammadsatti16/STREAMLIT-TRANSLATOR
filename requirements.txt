@@ -12,3 +12,4 @@ streamlit==0.88.0
 tensorboard==2.0
 tensorflow==2.0
 SpeechRecognition
+gTTS
