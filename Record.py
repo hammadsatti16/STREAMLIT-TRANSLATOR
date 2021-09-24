@@ -22,7 +22,7 @@ from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 def app():
     st.header("Press Record to record your voice")
-    stt_button = st.button(label="Speak")
+    stt_button = Button(label="Speak")
     stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
@@ -56,7 +56,7 @@ def app():
     st.header("Press Translate to get French Translation")
     
     
-    if st.button('Translate'):
+    if Button('Translate'):
         texts=result.get("GET_TEXT")
         st.write("You just said:   ",texts)
         english_texts=[]
@@ -194,7 +194,7 @@ def app():
         myobj.save("translator.mp3")
 
     st.subheader("Press Play Translation to hear french translation ")
-    if st.button('Play Translation'):
+    if Button('Play Translation'):
         try:
             os.system("translator.mp3")
             time.sleep(5)
