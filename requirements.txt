@@ -1,3 +1,7 @@
+build-essential
+libasound-dev
+portaudio19-dev
+python3-pyaudio
 h5py
 Keras==2.2.4
 Keras-Applications==1.0.8
