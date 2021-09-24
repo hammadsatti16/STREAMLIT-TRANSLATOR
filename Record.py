@@ -48,7 +48,7 @@ def app():
     refresh_on_update=False,
     override_height=75,
     debounce_time=0)
-
+    st.write("Done with the recording")
     st.header("Press Translate to get French Translation")
     
     
