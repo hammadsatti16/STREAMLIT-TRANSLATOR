@@ -8,3 +8,4 @@ streamlit
 tensorflow
 SpeechRecognition
 gTTS
+bokeh
