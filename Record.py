@@ -56,7 +56,7 @@ def app():
     st.header("Press Translate to get French Translation")
     
     
-    if Button('Translate'):
+    if Button(label="Translate"):
         texts=result.get("GET_TEXT")
         st.write("You just said:   ",texts)
         english_texts=[]
@@ -194,7 +194,7 @@ def app():
         myobj.save("translator.mp3")
 
     st.subheader("Press Play Translation to hear french translation ")
-    if Button('Play Translation'):
+    if Button(label="Play Translation"):
         try:
             os.system("translator.mp3")
             time.sleep(5)
