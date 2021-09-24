@@ -17,72 +17,48 @@ import wave
 import time
 from gtts import gTTS
 import os
-
+from bokeh.models.widgets import Button
+from bokeh.models import CustomJS
+from streamlit_bokeh_events import streamlit_bokeh_events
 def app():
     st.header("Press Record to record your voice")
-    if st.button('Record'):
-        filename = "voice.wav"
-        chunk = 1024
-        FORMAT = pyaudio.paInt16
-        channels = 1
-        sample_rate = 44100
-        record_seconds = 5
-        p = pyaudio.PyAudio()
-        stream = p.open(format=FORMAT,
-        channels=channels,
-        rate=sample_rate,
-        input=True,
-        output=True,
-        frames_per_buffer=chunk)
-        frames = []
-        for i in range(int(44100 / chunk * record_seconds)):
-            data = stream.read(chunk)
-            frames.append(data)
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
-        wf = wave.open(filename, "wb")
-        wf.setnchannels(channels)
-        wf.setsampwidth(p.get_sample_size(FORMAT))
-        wf.setframerate(sample_rate)
-        wf.writeframes(b"".join(frames))
-        wf.close() 
-        audio="voice.wav"    
-    st.header("Press Play to hear what you just recorded")
-    
-    
-    if st.button('Play'):
-        try:
-            chunk = 1024    
-            f = wave.open(r"./voice.wav","rb")  
-            p = pyaudio.PyAudio()  
-            stream = p.open(format = p.get_format_from_width(f.getsampwidth()),  
-                channels = f.getnchannels(),  
-                rate = f.getframerate(),  
-                output = True)  
-            data = f.readframes(chunk)  
-            while data:  
-                stream.write(data)  
-                data = f.readframes(chunk)  
+    stt_button = Button(label="Speak", width=100)
+    stt_button.js_on_event("button_click", CustomJS(code="""
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+ 
+    recognition.onresult = function (e) {
+        var value = "";
+        for (var i = e.resultIndex; i < e.results.length; ++i) {
+            if (e.results[i].isFinal) {
+                value += e.results[i][0].transcript;
+            }
+        }
+        if ( value != "") {
+            document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
+        }
+    }
+    recognition.start();
+    """))
+    result = streamlit_bokeh_events(
+    stt_button,
+    events="GET_TEXT",
+    key="listen",
+    refresh_on_update=False,
+    override_height=75,
+    debounce_time=0)
 
-            stream.stop_stream()  
-            stream.close()  
-            p.terminate()         
-        except:
-            st.write("Please record sound first")
-    
+    if result:
+        if "GET_TEXT" in result:
+            x=result.get("GET_TEXT")
+            st.write(result.get("GET_TEXT"))
+
     st.header("Press Translate to get French Translation")
     
     
     if st.button('Translate'):
-        recognizer = sr.Recognizer()
-        with sr.AudioFile("./voice.wav") as source:
-            recorded_audio = recognizer.listen(source)
-            
-        text = recognizer.recognize_google(
-            recorded_audio, 
-            language="en-US")
-        texts=text
+        texts=x
         st.write("You just said:   ",texts)
         english_texts=[]
         french_texts=[]
@@ -126,7 +102,7 @@ def app():
             if len(i)>max_decoder_seq_length:
                 max_decoder_seq_length=len(i)
         latent_dim = 256  
-        model = load_model("FrencTrans.h5")        
+        model = load_model("./TransFrench.h5")        
         encoder_inputs = model.input[0]  # input_1
         encoder_outputs_1, state_h_enc_1, state_c_enc_1 = model.layers[2].output 
         encoder_outputs, state_h_enc, state_c_enc = model.layers[4].output 
@@ -226,4 +202,6 @@ def app():
             os.remove("translator.mp3")        
         except:
             st.write("Please translate first")       
+  
+
   
