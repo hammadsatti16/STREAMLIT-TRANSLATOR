@@ -9,3 +9,4 @@ tensorflow
 SpeechRecognition
 gTTS
 bokeh
+streamlit-bokeh-events
