@@ -11,3 +11,4 @@ gTTS
 bokeh
 streamlit-bokeh-events
 pyttsx3
+googletrans
