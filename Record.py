@@ -191,7 +191,7 @@ def app():
         inpu=np.array(inpu)
         d=decode_sequence(inpu)
         st.write("The translation is ",d)
-        texts=d
+        texts=str(d)
     st.subheader("Press Play Translation to hear french translation ")
     if st.button("Play Translation"):
         engine.say(texts)     
