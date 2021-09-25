@@ -205,8 +205,7 @@ def app():
     if st.button("Play Translation"):
         audio_file = open(f"audio.mp3", "rb")
         audio_bytes = audio_file.read()
-        st.markdown(f"## Your audio:")
-        os.system("audio.mp3")
+        st.markdown(f"#### Your audio:")
         st.audio(audio_bytes, format="audio/mp3", start_time=0)
 
   
