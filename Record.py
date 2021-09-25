@@ -201,6 +201,10 @@ def app():
         except:
             my_file_name = "audio"
         tts.save(f"audio.mp3")
+        st.write("\n")
+        st.write("\n")
+        st.write("\n")
+ 
     st.subheader("Press Play Translation to hear french translation ")
     if st.button("Play Translation"):
         audio_file = open(f"audio.mp3", "rb")
