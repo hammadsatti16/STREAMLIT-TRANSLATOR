@@ -195,6 +195,6 @@ def app():
     st.subheader("Press Play Translation to hear french translation ")
     if st.button("Play Translation"):
         engine.say(texts)     
-        
+        engine.runAndWait()
 
   
