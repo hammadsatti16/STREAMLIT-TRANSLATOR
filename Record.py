@@ -194,7 +194,20 @@ def app():
         texts=str(d)
     st.subheader("Press Play Translation to hear french translation ")
     if st.button("Play Translation"):
-        engine.say(texts)     
-        engine.runAndWait()
+        from gtts import gTTS
+        from googletrans import Translator
+        trans_text=d
+        input_language="fr"
+        output_language="en"
+        tts = gTTS(trans_text, lang=output_language, tld=tld, slow=False)
+        try:
+            my_file_name = text[0:20]
+        except:
+            my_file_name = "audio"
+        tts.save(f"{my_file_name}.mp3")
+        audio_file = open(f"{my_file_name}.mp3", "rb")
+        audio_bytes = audio_file.read()
+        st.markdown(f"## Your audio:")
+        st.audio(audio_bytes, format="audio/mp3", start_time=0)
 
   
