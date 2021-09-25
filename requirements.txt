@@ -10,3 +10,4 @@ SpeechRecognition
 gTTS
 bokeh
 streamlit-bokeh-events
+pyttsx3
