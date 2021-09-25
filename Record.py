@@ -20,9 +20,8 @@ import os
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
-import pyttsx3
+from googletrans import Translator
 def app():
-    engine = pyttsx3.init()
     st.subheader("Press Record to record your voice")
     stt_button = Button(label="Speak",width=70)
     stt_button.js_on_event("button_click", CustomJS(code="""
@@ -192,11 +191,7 @@ def app():
         d=decode_sequence(inpu)
         st.write("The translation is ",d)
         texts=str(d)
-    st.subheader("Press Play Translation to hear french translation ")
-    if st.button("Play Translation"):
-        from gtts import gTTS
-        from googletrans import Translator
-        trans_text=d
+        trans_text=texts
         input_language="fr"
         output_language="en"
         tts = gTTS(trans_text, lang=output_language, tld=tld, slow=False)
@@ -205,6 +200,8 @@ def app():
         except:
             my_file_name = "audio"
         tts.save(f"{my_file_name}.mp3")
+    st.subheader("Press Play Translation to hear french translation ")
+    if st.button("Play Translation"):
         audio_file = open(f"{my_file_name}.mp3", "rb")
         audio_bytes = audio_file.read()
         st.markdown(f"## Your audio:")
