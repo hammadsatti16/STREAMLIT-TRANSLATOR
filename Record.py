@@ -194,10 +194,7 @@ def app():
         texts=d
     st.subheader("Press Play Translation to hear french translation ")
     if st.button("Play Translation"):
-        try:
-            engine.say(texts)     
-        except:
-            st.write("Please translate first")       
-  
+        engine.say(texts)     
+        
 
   
