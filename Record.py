@@ -194,6 +194,7 @@ def app():
         trans_text=texts
         input_language="fr"
         output_language="en"
+        tld="com"
         tts = gTTS(trans_text, lang=output_language, tld=tld, slow=False)
         try:
             my_file_name = text[0:20]
