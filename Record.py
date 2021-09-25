@@ -200,12 +200,13 @@ def app():
             my_file_name = text[0:20]
         except:
             my_file_name = "audio"
-        tts.save(f"{my_file_name}.mp3")
+        tts.save(f"audio.mp3")
     st.subheader("Press Play Translation to hear french translation ")
     if st.button("Play Translation"):
-        audio_file = open(f"{my_file_name}.mp3", "rb")
+        audio_file = open(f"audio.mp3", "rb")
         audio_bytes = audio_file.read()
         st.markdown(f"## Your audio:")
+        os.system("audio.mp3")
         st.audio(audio_bytes, format="audio/mp3", start_time=0)
 
   
