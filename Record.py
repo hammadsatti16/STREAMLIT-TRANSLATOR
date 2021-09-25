@@ -189,7 +189,9 @@ def app():
         inpu=np.array(inpu)
         d=decode_sequence(inpu)
         st.write("The translation is ",d)
-        myobj = gTTS(text=d, lang='fr', slow=False)
+        texts=d
+        st.write(texts)
+        myobj = gTTS(text=texts, lang='fr', slow=False)
         myobj.save("translator.mp3")
 
     st.subheader("Press Play Translation to hear french translation ")
