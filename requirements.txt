@@ -1,0 +1,14 @@
+h5py
+Keras
+numpy
+opencv-python
+pandas
+PyAudio
+streamlit
+tensorflow
+SpeechRecognition
+gTTS
+bokeh
+streamlit-bokeh-events
+pyttsx3
+googletrans
